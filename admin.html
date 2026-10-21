@@ -1,7 +1,293 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Feedback Admin | Binyameen Digital Studio"><style>
-:root{color-scheme:dark;--bg:#10120f;--panel:#191c17;--lime:#c5ff38;--muted:#a5aaa0;--border:#ffffff20}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f8f4;font:15px/1.6 Inter,Arial,sans-serif}.wrap{width:min(1100px,92%);margin:40px auto}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}.logo{font-size:22px;font-weight:900}.logo span{color:var(--lime)}h1{font-size:clamp(27px,4vw,40px);line-height:1.15;margin:0 0 10px}.muted,small{color:var(--muted)}.panel,.item{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px;margin:16px 0}input,button{font:inherit;border-radius:9px;padding:12px 14px}input{width:100%;background:#10120f;border:1px solid var(--border);color:white;margin:8px 0 12px}button{border:0;cursor:pointer;font-weight:750}.primary{background:var(--lime);color:#111}.secondary{background:#2a3025;color:white;border:1px solid var(--border)}.danger{background:#6b2525;color:white}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}.stars{color:#ffd166}.status{display:inline-block;border-radius:99px;padding:3px 10px;background:#333;font-size:12px}.pending{background:#5a4218;color:#ffe5a0}.approved{background:#17452a;color:#b7f8c8}.rejected{background:#552525;color:#ffc5c5}.message{white-space:pre-wrap;overflow-wrap:anywhere}.hidden{display:none!important}.note{border-left:3px solid var(--lime);padding:10px 14px;background:#c5ff3810;color:#dce3d4;font-size:13px}a{color:var(--lime)}</style></head><body><main class="wrap"><div class="top"><div class="logo">binyameen<span>.</span> <small>Feedback Admin</small></div><a href="/">← View website</a></div><h1>Feedback moderation</h1><p class="muted">Review every submission privately. Only approved feedback with quote permission can appear on the public website.</p><div class="note">Setup required once: connect this project to Netlify from a Git repository and set the ADMIN_PASSWORD environment variable (12+ characters). Do not share this admin link or password.</div><section id="login" class="panel"><h2>Admin sign in</h2><label for="password">Admin password</label><input id="password" type="password" autocomplete="current-password" placeholder="Enter your private admin password"><button class="primary" id="loginBtn">Sign in</button><p id="loginMessage" class="muted"></p></section><section id="dashboard" class="hidden"><div class="top"><div id="counts" class="muted"></div><div class="actions"><button id="refresh" class="secondary">Refresh</button><button id="logout" class="secondary">Sign out</button></div></div><div id="items" class="grid"></div></section></main><script>
-const $=id=>document.getElementById(id);let password=sessionStorage.getItem('bds_admin_password')||'';const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-async function api(method='GET',body){const r=await fetch('/.netlify/functions/admin',{method,headers:{'Content-Type':'application/json','Authorization':'Bearer '+password},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw new Error(d.error||'Request failed');return d}
-async function load(){try{const d=await api();$('login').classList.add('hidden');$('dashboard').classList.remove('hidden');const all=d.feedback||[];$('counts').textContent=`${all.length} total · ${all.filter(x=>x.status==='pending').length} pending · ${all.filter(x=>x.status==='approved').length} approved · ${all.filter(x=>x.status==='rejected').length} rejected`;$('items').innerHTML=all.length?all.map(x=>`<article class="item"><div class="top"><span class="status ${esc(x.status)}">${esc(x.status)}</span><small>${esc(new Date(x.createdAt).toLocaleString())}</small></div><h3>${esc(x.name||'Name not provided')}</h3><small>${esc(x.email||'No email provided')}</small><p class="stars">${'★'.repeat(Math.max(1,Math.min(5,Number(x.rating)||1)))} <span class="muted">(${Number(x.rating)||0}/5)</span></p><p class="message">${esc(x.message)}</p><p><small>Quote permission: ${esc(x.permission)}</small></p><div class="actions">${x.status!=='approved'?`<button class="primary" data-action="approve" data-id="${esc(x.id)}">Approve</button>`:''}${x.status!=='rejected'?`<button class="secondary" data-action="reject" data-id="${esc(x.id)}">Reject</button>`:''}<button class="danger" data-action="delete" data-id="${esc(x.id)}">Delete</button></div>${x.status==='approved'&&x.permission.startsWith('No')?'<p class="muted">Approved for your records, but will remain private because quote permission was not granted.</p>':''}</article>`).join(''):'<div class="panel">No feedback submissions yet.</div>';}catch(e){$('login').classList.remove('hidden');$('dashboard').classList.add('hidden');$('loginMessage').textContent=e.message;}}
-$('loginBtn').onclick=async()=>{password=$('password').value;try{await api();sessionStorage.setItem('bds_admin_password',password);$('loginMessage').textContent='Signed in.';await load()}catch(e){$('loginMessage').textContent=e.message}};$('password').addEventListener('keydown',e=>{if(e.key==='Enter')$('loginBtn').click()});$('refresh').onclick=load;$('logout').onclick=()=>{sessionStorage.removeItem('bds_admin_password');password='';$('password').value='';$('dashboard').classList.add('hidden');$('login').classList.remove('hidden')};$('items').addEventListener('click',async e=>{const b=e.target.closest('button[data-action]');if(!b)return;const action=b.dataset.action;if(action==='delete'&&!confirm('Permanently delete this submission?'))return;try{await api('POST',{action,id:b.dataset.id});await load()}catch(err){alert(err.message)}});if(password)load();
-</script></body></html>
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Feedback Admin | Binyameen Digital Studio</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #10120f;
+  --panel: #191c17;
+  --lime: #c5ff38;
+  --muted: #a5aaa0;
+  --border: #ffffff20;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f7f8f4;
+  font: 15px/1.6 Inter, Arial, sans-serif;
+}
+.wrap {
+  width: min(1100px, 92%);
+  margin: 40px auto;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+.logo { font-size: 22px; font-weight: 900; }
+.logo span { color: var(--lime); }
+h1 {
+  font-size: clamp(27px, 4vw, 40px);
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+.muted, small { color: var(--muted); }
+.panel, .item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  margin: 16px 0;
+}
+input, button {
+  font: inherit;
+  border-radius: 9px;
+  padding: 12px 14px;
+}
+input {
+  width: 100%;
+  background: #10120f;
+  border: 1px solid var(--border);
+  color: white;
+  margin: 8px 0 12px;
+}
+button {
+  border: 0;
+  cursor: pointer;
+  font-weight: 750;
+}
+.primary { background: var(--lime); color: #111; }
+.secondary {
+  background: #2a3025;
+  color: white;
+  border: 1px solid var(--border);
+}
+.danger { background: #6b2525; color: white; }
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
+}
+.stars { color: #ffd166; }
+.status {
+  display: inline-block;
+  border-radius: 99px;
+  padding: 3px 10px;
+  background: #333;
+  font-size: 12px;
+}
+.pending { background: #5a4218; color: #ffe5a0; }
+.approved { background: #17452a; color: #b7f8c8; }
+.rejected { background: #552525; color: #ffc5c5; }
+.message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.hidden { display: none !important; }
+.note {
+  border-left: 3px solid var(--lime);
+  padding: 10px 14px;
+  background: #c5ff3810;
+  color: #dce3d4;
+  font-size: 13px;
+}
+a { color: var(--lime); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <div class="logo">binyameen<span>.</span> <small>Feedback Admin</small></div>
+    <a href="/">← View website</a>
+  </div>
+
+  <h1>Feedback moderation</h1>
+  <p class="muted">
+    Review every submission privately. Only approved feedback with quote
+    permission can appear on the public website.
+  </p>
+
+  <div class="note">
+    Setup required once: connect this project to Netlify from a Git repository
+    and set the ADMIN_PASSWORD environment variable (12+ characters).
+    Do not share this admin link or password.
+  </div>
+
+  <section id="login" class="panel">
+    <h2>Admin sign in</h2>
+    <label for="password">Admin password</label>
+    <input
+      id="password"
+      type="password"
+      autocomplete="current-password"
+      placeholder="Enter your private admin password"
+    >
+    <button class="primary" id="loginBtn">Sign in</button>
+    <p id="loginMessage" class="muted"></p>
+  </section>
+
+  <section id="dashboard" class="hidden">
+    <div class="top">
+      <div id="counts" class="muted"></div>
+      <div class="actions">
+        <button id="refresh" class="secondary">Refresh</button>
+        <button id="logout" class="secondary">Sign out</button>
+      </div>
+    </div>
+    <div id="items" class="grid"></div>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let password = sessionStorage.getItem('bds_admin_password') || '';
+
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+}[c]));
+
+async function api(method = 'GET', body) {
+  const r = await fetch('/.netlify/functions/admin', {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + password
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+
+  const d = await r.json();
+
+  if (!r.ok) throw new Error(d.error || 'Request failed');
+
+  return d;
+}
+
+async function load() {
+  try {
+    const d = await api();
+
+    $('login').classList.add('hidden');
+    $('dashboard').classList.remove('hidden');
+
+    const all = d.feedback || [];
+
+    $('counts').textContent =
+      `${all.length} total · ` +
+      `${all.filter(x => x.status === 'pending').length} pending · ` +
+      `${all.filter(x => x.status === 'approved').length} approved · ` +
+      `${all.filter(x => x.status === 'rejected').length} rejected`;
+
+    $('items').innerHTML = all.length
+      ? all.map(x => `
+        <article class="item">
+          <div class="top">
+            <span class="status ${esc(x.status)}">${esc(x.status)}</span>
+            <small>${esc(new Date(x.createdAt).toLocaleString())}</small>
+          </div>
+
+          <h3>${esc(x.name || 'Name not provided')}</h3>
+          <small>${esc(x.email || 'No email provided')}</small>
+
+          <p class="stars">
+            ${'★'.repeat(Math.max(1, Math.min(5, Number(x.rating) || 1)))}
+            <span class="muted">(${Number(x.rating) || 0}/5)</span>
+          </p>
+
+          <p class="message">${esc(x.message)}</p>
+          <p><small>Quote permission: ${esc(x.permission)}</small></p>
+
+          <div class="actions">
+            ${x.status !== 'approved'
+              ? `<button class="primary" data-action="approve" data-id="${esc(x.id)}">Approve</button>`
+              : ''}
+            ${x.status !== 'rejected'
+              ? `<button class="secondary" data-action="reject" data-id="${esc(x.id)}">Reject</button>`
+              : ''}
+            <button class="danger" data-action="delete" data-id="${esc(x.id)}">Delete</button>
+          </div>
+
+          ${x.status === 'approved' && String(x.permission || '').startsWith('No')
+            ? '<p class="muted">Approved for your records, but will remain private because quote permission was not granted.</p>'
+            : ''}
+        </article>
+      `).join('')
+      : '<div class="panel">No feedback submissions yet.</div>';
+
+  } catch (e) {
+    $('login').classList.remove('hidden');
+    $('dashboard').classList.add('hidden');
+    $('loginMessage').textContent = e.message;
+  }
+}
+
+$('loginBtn').onclick = async () => {
+  password = $('password').value;
+
+  try {
+    await api();
+    sessionStorage.setItem('bds_admin_password', password);
+    $('loginMessage').textContent = 'Signed in.';
+    await load();
+  } catch (e) {
+    $('loginMessage').textContent = e.message;
+  }
+};
+
+$('password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') $('loginBtn').click();
+});
+
+$('refresh').onclick = load;
+
+$('logout').onclick = () => {
+  sessionStorage.removeItem('bds_admin_password');
+  password = '';
+  $('password').value = '';
+  $('dashboard').classList.add('hidden');
+  $('login').classList.remove('hidden');
+};
+
+$('items').addEventListener('click', async e => {
+  const b = e.target.closest('button[data-action]');
+  if (!b) return;
+
+  const action = b.dataset.action;
+
+  if (action === 'delete' && !confirm('Permanently delete this submission?')) {
+    return;
+  }
+
+  try {
+    await api('POST', { action, id: b.dataset.id });
+    await load();
+  } catch (err) {
+    alert(err.message);
+  }
+});
+
+if (password) load();
+</script>
+</body>
+</html>
