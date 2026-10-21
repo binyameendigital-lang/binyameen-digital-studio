@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10120f">
+<meta name="description" content="Binyameen Digital Studio — book cover design, KDP formatting, workbooks, eBooks, graphic design and website development.">
+<title>Binyameen Digital Studio | Creative Work. Digital Impact.</title>
+
+<style>
+:root{
+  --bg:#10120f;
+  --panel:#191c17;
+  --panel2:#20241d;
+  --lime:#c5ff38;
+  --white:#f7f8f4;
+  --muted:#a5aaa0;
+  --border:rgba(255,255,255,.12);
+  --shadow:0 18px 45px rgba(0,0,0,.27);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;line-height:1.65}
+a{color:inherit;text-decoration:none}
+img{width:100%;display:block;object-fit:cover}
+button,input,textarea{font:inherit}
+.container{width:min(1160px,90%);margin:auto}
+section{padding:88px 0}
+h1,h2,h3{line-height:1.12;letter-spacing:-1px}
+h1{font-size:clamp(43px,6.5vw,78px)}
+h2{font-size:clamp(32px,4vw,49px)}
+h3{font-size:20px}
+p{color:var(--muted)}
+.lime{color:var(--lime)}
+.eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:15px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border:1px solid var(--border);border-radius:99px;font-size:13px;font-weight:800;transition:.25s;cursor:pointer}
+.btn-primary{background:var(--lime);color:#11140d;border-color:var(--lime)}
+.btn-primary:hover{background:#d8ff85;transform:translateY(-3px);box-shadow:0 9px 25px #c5ff3825}
+.btn-outline:hover{border-color:var(--lime);color:var(--lime)}
+.section-heading{max-width:690px;margin-bottom:38px}
+.section-heading p{margin-top:16px;max-width:570px}
+
+/* Navigation */
+header{position:sticky;top:0;z-index:20;background:#10120fee;backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav{min-height:75px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-size:24px;font-weight:950;letter-spacing:-1.5px}
+.logo span{color:var(--lime)}
+.nav-links{display:flex;align-items:center;gap:23px;font-size:13px;color:#d6d9d0}
+.nav-links a:hover{color:var(--lime)}
+.menu-btn{display:none;background:var(--panel);border:1px solid var(--border);color:white;padding:8px 12px;border-radius:9px}
+
+/* Hero */
+.hero{padding:88px 0 75px;background:radial-gradient(ellipse at 83% 40%,#c5ff3810,transparent 35%),linear-gradient(135deg,#10120f,#151912)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}
+.hero h1{margin-bottom:23px}
+.hero-copy{max-width:560px;font-size:15px;margin-bottom:27px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-note{font-size:12px;margin-top:23px}
+.hero-note span{color:var(--lime)}
+.hero-art{padding:12px;border:1px solid #ffffff25;border-radius:24px;background:linear-gradient(140deg,#292e24,#171a15);box-shadow:0 30px 80px #0006;transform:rotate(1deg)}
+.hero-art img{height:400px;border-radius:16px}
+.art-label{display:inline-block;margin-top:12px;padding:7px 12px;border-radius:7px;background:var(--lime);color:#111;font-size:11px;font-weight:900}
+
+/* Marquee */
+.ticker{overflow:hidden;background:var(--lime);color:#10120f;padding:13px 0}
+.ticker-track{display:flex;width:max-content;gap:34px;animation:slide 32s linear infinite;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:1.4px}
+.ticker-track span:after{content:"✳";margin-left:34px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Cards */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{border:1px solid var(--border);border-radius:17px;background:linear-gradient(145deg,#20241d,#151713);box-shadow:0 10px 28px #0002;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
+.card:hover{transform:translateY(-6px);border-color:#c5ff3870;box-shadow:0 20px 40px #0005,0 0 22px #c5ff3808}
+.service-card{padding:25px}
+.icon-box{width:43px;height:43px;display:grid;place-items:center;background:#c5ff3815;color:var(--lime);border:1px solid #c5ff3824;border-radius:12px;font-size:20px;margin-bottom:20px}
+.service-card h3{font-size:19px;margin-bottom:11px}
+.service-card p{font-size:13px;margin-bottom:17px}
+.small-link{color:var(--lime);font-size:12px;font-weight:850}
+
+
+    .portfolio-image { width:100%; aspect-ratio: 4 / 3; object-fit: cover; display:block; background:#20241c; }
+    .project-photo { overflow:hidden; }
+    .contact-direct-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+
+    /* Portfolio */
+.portfolio{background:#151813}
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
+.filter-btn{background:#1b1e19;border:1px solid var(--border);color:#d5d8cf;border-radius:99px;padding:9px 15px;font-size:12px;cursor:pointer}
+.filter-btn.active,.filter-btn:hover{background:var(--lime);border-color:var(--lime);color:#10120f}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}
+.project-image{position:relative;background:#ece5dc;overflow:hidden}
+.project-image img{height:260px;transition:transform .4s}
+.project:hover .project-image img{transform:scale(1.04)}
+.project-info{padding:21px}
+.project-info h3{font-size:19px;margin-bottom:9px}
+.project-info p{font-size:13px;margin-bottom:14px}
+.tag{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;color:var(--lime);background:#c5ff3812;border-radius:6px;padding:5px 8px;margin-bottom:12px}
+.project[hidden]{display:none!important}
+.portfolio-note{font-size:12px;margin-top:22px}
+
+/* CSS cover mockups */
+.cover-stage{height:260px;background:radial-gradient(ellipse at center,#f7f0e4,#d9d0c3);display:flex;align-items:center;justify-content:center;gap:12px;padding:20px}
+.book{position:relative;width:120px;height:180px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;color:white;background:linear-gradient(145deg,#243c2d,#0b1b13);box-shadow:8px 12px 16px #0004;transform:perspective(600px) rotateY(-9deg);border-left:6px solid #101d14}
+.book:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#ffffff18,transparent 35%,#0002)}
+.book b{font-family:Georgia,serif;font-size:17px;line-height:1.2}
+.book.second{background:linear-gradient(145deg,#d8a34c,#784222);color:#20170e;transform:perspective(600px) rotateY(7deg)}
+.book.purple{background:linear-gradient(145deg,#49366c,#171023)}
+.book.cream{background:linear-gradient(145deg,#fff1d7,#bd9b6d);color:#33281b}
+.book.blue{background:linear-gradient(145deg,#23546b,#102b39)}
+.book small{display:block;font-size:8px;letter-spacing:1px;margin-bottom:12px}
+.spread{height:260px;background:#e9e3d9;display:flex;align-items:center;justify-content:center;padding:20px}
+.open-book{display:grid;grid-template-columns:1fr 1fr;width:95%;max-width:360px;min-height:170px;box-shadow:0 12px 25px #0002;transform:perspective(700px) rotateX(2deg)}
+.open-book>div{padding:17px 13px;background:#fffdf8;color:#333;font-family:Georgia,serif;font-size:10px}
+.open-book>div+div{border-left:1px solid #ddd}
+.open-book h4{font-size:14px;color:#344d37;margin-bottom:9px}
+.open-book p{color:#666;font-size:9px;line-height:1.5}
+.lines{height:5px;background:#ddd8ce;margin:7px 0;border-radius:4px}
+.web-preview{height:260px;padding:20px;background:linear-gradient(140deg,#252c23,#0e110d);display:flex;align-items:center;justify-content:center}
+.web-window{width:100%;border:1px solid #ffffff25;border-radius:10px;overflow:hidden;background:#121510;box-shadow:0 14px 30px #0006}
+.browser-bar{height:20px;background:#2a2e27;display:flex;align-items:center;gap:4px;padding-left:9px}
+.browser-bar i{width:5px;height:5px;background:#8b9086;border-radius:50%}
+.web-screen{padding:18px 15px}
+.web-screen .fake-nav{font-size:8px;color:#ddd;display:flex;justify-content:space-between;margin-bottom:18px}
+.web-screen h4{font-size:20px;line-height:1.15;margin-bottom:10px}
+.web-screen p{font-size:8px;margin-bottom:12px}
+.fake-cta{display:inline-block;padding:5px 9px;background:var(--lime);color:#10120f;font-size:8px;font-weight:bold;border-radius:4px}
+.web-screen .fake-blocks{display:flex;gap:7px;margin-top:16px}
+.fake-blocks i{height:33px;flex:1;border:1px solid #ffffff20;background:#20251d;border-radius:4px}
+
+/* About and process */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:60px}
+.monogram{min-height:320px;display:grid;place-items:center;border:1px solid var(--border);border-radius:23px;background:radial-gradient(circle,#c5ff3820,transparent 58%),linear-gradient(145deg,#20241d,#131510);box-shadow:var(--shadow)}
+.monogram span{font-size:140px;font-weight:950;letter-spacing:-12px;color:var(--lime)}
+.about-copy p{margin-top:16px}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:23px}
+.about-point{padding:13px;border:1px solid var(--border);background:var(--panel);border-radius:10px;font-size:12px;font-weight:750}
+.about-point span{color:var(--lime);margin-right:7px}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.process-card{padding:22px;border:1px solid var(--border);border-radius:15px;background:linear-gradient(145deg,#20241d,#151713);box-shadow:0 10px 26px #0002}
+.process-card b{display:block;color:var(--lime);font-size:30px;margin-bottom:18px}
+.process-card h3{font-size:17px;margin-bottom:10px}
+.process-card p{font-size:13px}
+
+/* Testimonials */
+.reviews{background:#151813}
+.demo-notice{padding:15px 18px;border:1px solid #c5ff3840;background:#c5ff3808;border-radius:12px;font-size:12px;margin-bottom:22px}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.review-card{padding:23px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#20241d,#161813);box-shadow:0 13px 30px #0003}
+.stars{color:#ffd166;letter-spacing:3px;font-size:19px;margin-bottom:13px}
+.demo-label{font-size:9px;color:var(--lime);letter-spacing:1.5px;font-weight:900;margin-bottom:10px}
+.review-card h3{font-size:17px;margin-bottom:9px}
+.review-card p{font-size:13px}
+.reviewer{border-top:1px solid var(--border);padding-top:15px;margin-top:19px;font-size:12px;font-weight:800}
+.reviewer span{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:3px}
+
+/* Contact */
+.contact-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:40px;border:1px solid var(--border);border-radius:22px;background:radial-gradient(ellipse at 100% 0%,#c5ff3810,transparent 40%),linear-gradient(145deg,#20241d,#141612);box-shadow:var(--shadow)}
+.contact-copy p{margin-top:16px}
+.profile-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+form{display:grid;gap:13px}
+label{display:grid;gap:6px;font-size:12px;font-weight:800}
+input,textarea{width:100%;background:#10120f;border:1px solid var(--border);border-radius:9px;color:white;padding:12px 13px;outline:none}
+input:focus,textarea:focus{border-color:var(--lime)}
+textarea{min-height:115px;resize:vertical}
+.form-hint{font-size:11px}
+footer{padding:25px 0;border-top:1px solid var(--border)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.footer-inner p{font-size:12px}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero-grid{gap:30px}
+  .hero-art img{height:330px}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .projects{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:repeat(2,1fr)}
+  .review-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  section{padding:62px 0}
+  .nav{min-height:67px}
+  .logo{font-size:21px}
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:67px;left:0;right:0;background:#151813;padding:22px 5%;border-bottom:1px solid var(--border);flex-direction:column;align-items:stretch;gap:17px}
+  .nav-links.open{display:flex}
+  .nav-links .btn{align-self:flex-start}
+  .hero{padding:60px 0 50px}
+  .hero-grid,.about-grid,.contact-box{grid-template-columns:1fr}
+  .hero-grid{gap:35px}
+  .hero-art img{height:300px}
+  .services,.projects,.review-grid{grid-template-columns:1fr}
+  .service-card{padding:22px}
+  .about-grid{gap:25px}
+  .monogram{min-height:230px}
+  .monogram span{font-size:110px}
+  .contact-box{padding:24px}
+  .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:390px){
+  .process-grid,.about-points{grid-template-columns:1fr}
+  .book{width:105px;height:160px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* Private client website feedback form */
+.feedback-panel{max-width:820px;margin:30px auto 0;padding:clamp(22px,4vw,38px);border:1px solid var(--border);border-radius:22px;background:radial-gradient(ellipse at 100% 0%,#c5ff3810,transparent 42%),linear-gradient(145deg,#20241d,#141612);box-shadow:var(--shadow)}
+.feedback-intro{color:var(--muted);font-size:14px;margin:10px 0 24px;max-width:650px}
+.feedback-form{display:grid;gap:18px}
+.approved-feedback{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 28px}
+.approved-review{padding:20px;border:1px solid var(--border);border-radius:15px;background:linear-gradient(145deg,#20241d,#151713)}
+.approved-review .review-stars{color:#ffd166;letter-spacing:2px;font-size:15px}
+.approved-review p{margin:10px 0;color:#e6e9e1;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.approved-review small{color:var(--muted)}
+.feedback-status{font-size:13px;margin-top:12px;color:var(--lime)}
+.feedback-status.error{color:#ff9e9e}
+.feedback-form input,.feedback-form textarea,.feedback-form select{width:100%;background:#10120f;border:1px solid var(--border);border-radius:10px;color:white;padding:13px 14px;outline:none;font:inherit}
+.feedback-form input:focus,.feedback-form textarea:focus,.feedback-form select:focus{border-color:var(--lime)}
+.feedback-form textarea{min-height:150px;resize:vertical}
+.rating-fieldset{border:0;padding:0;margin:0;min-width:0}
+.rating-fieldset legend{font-size:13px;font-weight:800;margin-bottom:10px}
+.star-options{display:flex;flex-wrap:wrap;gap:9px}
+.star-option{position:relative;display:flex!important;align-items:center;justify-content:center;gap:7px!important;min-width:66px;padding:11px 13px;border:1px solid var(--border);border-radius:11px;background:#10120f;color:#ffd166;cursor:pointer;font-size:15px!important}
+.star-option input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.star-option:has(input:checked){border-color:var(--lime);background:#c5ff3815;box-shadow:0 0 0 1px #c5ff3840}
+.star-option:focus-within{outline:2px solid var(--lime);outline-offset:3px}
+.feedback-privacy{font-size:12px;color:var(--muted);line-height:1.7}
+.feedback-success-note{border:1px solid #c5ff3840;border-radius:12px;padding:14px 16px;font-size:12px;color:var(--muted);margin-top:18px}
+.feedback-form .hp-field{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+@media(max-width:650px){.star-options{gap:7px}.star-option{flex:1;min-width:52px;padding:10px 7px}}
+
+
+/* Landing page concept previews */
+.image-preview{padding:0!important;background:#111827!important;min-height:250px;overflow:hidden}
+.image-preview img{width:100%;height:100%;min-height:250px;object-fit:cover;object-position:center;transition:transform .35s ease}
+.project:hover .image-preview img{transform:scale(1.035)}
+.landing-preview{height:250px;padding:13px;background:#eef1f5;overflow:hidden;display:flex;align-items:stretch;justify-content:center}
+.browser-frame{width:100%;border-radius:10px;background:#fff;overflow:hidden;box-shadow:0 8px 24px #10182822;border:1px solid #d8dde5;display:flex;flex-direction:column}
+.browser-bar{height:22px;flex:0 0 22px;background:#e7eaf0;display:flex;align-items:center;gap:4px;padding:0 8px}
+.browser-dot{width:5px;height:5px;border-radius:50%;background:#9aa4b2}
+.lp-content{flex:1;padding:16px;position:relative;overflow:hidden}
+.lp-nav{display:flex;align-items:center;justify-content:space-between;font-size:8px;font-weight:800;letter-spacing:.04em}
+.lp-mini-btn{display:inline-block;border-radius:4px;padding:6px 9px;font-size:7px;font-weight:800;margin-top:9px}
+.lp-small{font-size:7px;line-height:1.5;max-width:78%;margin:7px 0}
+.lp-title{font-size:23px;line-height:1.02;font-weight:900;letter-spacing:-.04em;margin:13px 0 7px}
+.lp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:10px;align-items:center;height:calc(100% - 20px)}
+.lp-art{height:120px;border-radius:9px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:19px;line-height:1.05;padding:10px}
+.lp-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}.lp-tags span{font-size:6px;border-radius:99px;padding:4px 6px;background:#f0f2f5}
+.lp-cream{background:#fff8ec;color:#243047}.lp-cream .lp-title span{color:#ed6a3a}.lp-cream .lp-art{background:linear-gradient(145deg,#ffce8b,#f57b58);color:#fff;box-shadow:inset 0 0 0 7px #ffffff35}
+.lp-dark{background:#111b2b;color:#f8fafc}.lp-dark .lp-small{color:#c6d0df}.lp-dark .lp-art{background:linear-gradient(145deg,#b4f36b,#4c8d69);color:#12261c;transform:rotate(2deg)}.lp-dark .lp-mini-btn{background:#c3f56b;color:#15231a}
+.lp-lilac{background:#f5f0ff;color:#2c2146}.lp-lilac .lp-title{font-size:20px}.lp-lilac .lp-art{background:linear-gradient(145deg,#d8c5ff,#9a7be7);color:#fff;border-radius:48% 48% 12px 12px}.lp-lilac .lp-mini-btn{background:#35234e;color:#fff}
+.lp-stats{display:flex;gap:13px;margin-top:9px}.lp-stats strong{display:block;font-size:10px}.lp-stats small{font-size:6px;color:#7a8290}
+@media(max-width:600px){.landing-preview{height:225px}.lp-title{font-size:20px}.lp-art{height:105px;font-size:16px}}
+
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">binyameen<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Feedback</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="#contact">Let's Talk ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Binyameen Digital Studio</div>
+      <h1>Creative work.<br>Digital <span class="lime">impact.</span></h1>
+      <p class="hero-copy">From professional book design and KDP formatting to modern websites and digital visuals, I help bring ideas to life with thoughtful design and practical solutions.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#portfolio">Explore My Work ↗</a>
+        <a class="btn btn-outline" href="#contact">Start a Project</a>
+      </div>
+      <p class="hero-note"><span>✳</span> Design · Web Development · AI Automation · Digital Growth</p>
+    </div>
+    <div class="hero-art">
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1100&q=85" alt="Modern creative studio workspace">
+      <span class="art-label">Design with purpose ✳</span>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track" aria-hidden="true">
+    <span>Book Cover Design</span><span>KDP Formatting</span><span>eBook Design</span><span>Web Development</span><span>Workbooks & PDFs</span><span>Book Cover Design</span><span>KDP Formatting</span><span>eBook Design</span><span>Web Development</span><span>Workbooks & PDFs</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Services</div>
+      <h2>Good ideas deserve<br><span class="lime">great execution.</span></h2>
+      <p>Creative services to help authors, entrepreneurs and businesses present their work professionally.</p>
+    </div>
+    <div class="services">
+      <article class="card service-card"><div class="icon-box">▤</div><h3>Book Cover Design</h3><p>Professional front covers, full wraps, ebook covers and polished book mockups for authors and publishers.</p><a class="small-link" href="#contact">Discuss a book ↗</a></article>
+      <article class="card service-card"><div class="icon-box">▣</div><h3>KDP Formatting</h3><p>Clean interiors, print-ready PDFs, ebook formatting, margins, page numbers and clickable contents.</p><a class="small-link" href="#contact">Format my book ↗</a></article>
+      <article class="card service-card"><div class="icon-box">✦</div><h3>Children's Book Design</h3><p>Colorful storybook covers, activity books, learning pages and age-appropriate layouts.</p><a class="small-link" href="#contact">Design a book ↗</a></article>
+      <article class="card service-card"><div class="icon-box">▧</div><h3>Workbooks & eBooks</h3><p>Workbooks, journals, lead magnets, guides, ebooks and branded PDF documents.</p><a class="small-link" href="#contact">Plan a document ↗</a></article>
+      <article class="card service-card"><div class="icon-box">✳</div><h3>Graphic Design</h3><p>Social media creatives, brand assets, presentations, banners and editable Canva designs.</p><a class="small-link" href="#contact">Explore design ↗</a></article>
+      <article class="card service-card"><div class="icon-box">⌘</div><h3>Website Development</h3><p>Responsive business websites and WordPress websites built around your goals and brand.</p><a class="small-link" href="#contact">Build a website ↗</a></article>
+      <article class="card service-card"><div class="icon-box">↗</div><h3>Landing Pages & UI/UX</h3><p>Clear landing pages, app interface concepts and user-friendly website experiences.</p><a class="small-link" href="#contact">Improve your UX ↗</a></article>
+      <article class="card service-card"><div class="icon-box">▶</div><h3>Video Editing</h3><p>Short-form videos, reels, promotional edits and content prepared for social platforms.</p><a class="small-link" href="#contact">Edit a video ↗</a></article>
+      <article class="card service-card"><div class="icon-box">⌕</div><h3>SEO Optimization</h3><p>On-page SEO foundations, metadata, content structure and practical website optimization.</p><a class="small-link" href="#contact">Improve SEO ↗</a></article>
+      <article class="card service-card"><div class="icon-box">◎</div><h3>Social Media & Google Ads</h3><p>Campaign setup support and creative assets for Google, Facebook, Instagram and other platforms.</p><a class="small-link" href="#contact">Plan a campaign ↗</a></article>
+      <article class="card service-card"><div class="icon-box">⚙</div><h3>AI Automation</h3><p>Workflow ideas and practical automation to reduce repetitive tasks and improve productivity.</p><a class="small-link" href="#contact">Automate a workflow ↗</a></article>
+      <article class="card service-card"><div class="icon-box">↗</div><h3>Fiverr Profile & Gig Optimization</h3><p>Profile presentation, gig copy, keyword research and listing improvements to help clients understand your offer.</p><a class="small-link" href="#contact">Optimize a gig ↗</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Portfolio showcase</div>
+      <h2>A range of ideas.<br><span class="lime">One creative studio.</span></h2>
+      <p>Explore book design, editorial layouts and distinct sample landing-page concepts. These web designs are illustrative concepts you can replace with real client work later.</p>
+    </div>
+
+    <div class="filters" aria-label="Filter portfolio projects">
+      <button class="filter-btn active" data-filter="all">All Work</button>
+      <button class="filter-btn" data-filter="covers">Book Covers</button>
+      <button class="filter-btn" data-filter="interiors">Interior Layouts</button>
+      <button class="filter-btn" data-filter="web">Web Concepts</button>
+    </div>
+
+    <div class="projects">
+      <article class="card project" data-category="covers">
+        <div class="project-photo"><img class="portfolio-image" src="assets/portfolio-jesus-girl.jpg" alt="The Jesus Girl book cover and back-cover mockup"></div>
+        <div class="project-info"><span class="tag">BOOK COVER MOCKUP</span><h3>The Jesus Girl</h3><p>Book cover and back-cover presentation supplied for the portfolio.</p></div>
+      </article>
+      <article class="card project" data-category="covers">
+        <div class="project-photo"><img class="portfolio-image" src="assets/portfolio-good-but-not-good.jpg" alt="Good but not good for you book mockup"></div>
+        <div class="project-info"><span class="tag">BOOK COVER MOCKUP</span><h3>Good but Not Good for You</h3><p>Book mockup featuring a clean cover layout and relationship-guidance theme.</p></div>
+      </article>
+      <article class="card project" data-category="covers">
+        <div class="project-photo"><img class="portfolio-image" src="assets/portfolio-life-on-campus.jpg" alt="Life on Campus book mockup"></div>
+        <div class="project-info"><span class="tag">BOOK COVER MOCKUP</span><h3>Life on Campus</h3><p>Book cover mockup for a title about university life and student experiences.</p></div>
+      </article>
+      <article class="card project" data-category="web">
+        <div class="landing-preview">
+          <div class="browser-frame"><div class="browser-bar"><i class="browser-dot"></i><i class="browser-dot"></i><i class="browser-dot"></i></div>
+            <div class="lp-content lp-cream"><div class="lp-nav"><span>FLOURISH / WELLNESS</span><span>About　 Programs　 Contact</span></div>
+              <div class="lp-grid"><div><div class="lp-title">Feel better.<br><span>Live brighter.</span></div><p class="lp-small">Simple daily rituals and expert guidance to help you feel your best.</p><span class="lp-mini-btn" style="background:#26364b;color:white">Explore programs ↗</span><div class="lp-stats"><div><strong>4.9/5</strong><small>Member rating</small></div><div><strong>12k+</strong><small>Happy members</small></div></div></div><div class="lp-art">YOUR<br>WELLNESS<br>JOURNEY</div></div>
+            </div>
+          </div>
+        </div><div class="project-info"><span class="tag">LANDING PAGE CONCEPT 01</span><h3>Wellness Brand Landing Page</h3><p>A warm, conversion-focused homepage concept for a wellness studio, with clear navigation and a strong call to action.</p></div>
+      </article>
+
+      <article class="card project" data-category="web">
+        <div class="landing-preview">
+          <div class="browser-frame"><div class="browser-bar"><i class="browser-dot"></i><i class="browser-dot"></i><i class="browser-dot"></i></div>
+            <div class="lp-content lp-dark"><div class="lp-nav"><span>STACK / DIGITAL</span><span>Services　 Work　 ↗</span></div>
+              <div class="lp-grid"><div><div class="lp-title">Build a brand<br>that <span style="color:#c3f56b">moves.</span></div><p class="lp-small">Strategy, digital products and creative systems built for ambitious teams.</p><span class="lp-mini-btn">Start a project ↗</span><div class="lp-tags"><span>BRANDING</span><span>WEB DESIGN</span><span>GROWTH</span></div></div><div class="lp-art">MAKE<br>IT<br>MATTER.</div></div>
+            </div>
+          </div>
+        </div><div class="project-info"><span class="tag">LANDING PAGE CONCEPT 02</span><h3>Creative Agency Landing Page</h3><p>A bold, dark visual direction for a digital agency, featuring strong typography, service tags and a prominent project CTA.</p></div>
+      </article>
+
+      <article class="card project" data-category="web">
+        <div class="landing-preview">
+          <div class="browser-frame"><div class="browser-bar"><i class="browser-dot"></i><i class="browser-dot"></i><i class="browser-dot"></i></div>
+            <div class="lp-content lp-lilac"><div class="lp-nav"><span>STUDYSPRING</span><span>Courses　 For teams　 Log in</span></div>
+              <div class="lp-grid"><div><div class="lp-title">Learn skills.<br><span style="color:#8061c6">Open doors.</span></div><p class="lp-small">Practical online courses designed to help you take the next step in your career.</p><span class="lp-mini-btn">Browse courses ↗</span><div class="lp-tags"><span>DESIGN</span><span>BUSINESS</span><span>TECH</span></div></div><div class="lp-art">LEARN<br>YOUR<br>WAY</div></div>
+            </div>
+          </div>
+        </div><div class="project-info"><span class="tag">LANDING PAGE CONCEPT 03</span><h3>Online Learning Landing Page</h3><p>A friendly education concept with a softer palette, course categories and an approachable sign-up journey.</p></div>
+      </article>
+
+      <article class="card project" data-category="covers">
+        <div class="cover-stage">
+          <div class="book"><div><small>THE CREATIVE</small><b>IDEAS<br>FOR A<br>BETTER<br>FUTURE</b><small style="margin-top:14px">AUTHOR NAME</small></div></div>
+          <div class="book second"><div><small>A PRACTICAL GUIDE</small><b>BUILD<br>YOUR<br>VISION</b><small style="margin-top:14px">AUTHOR NAME</small></div></div>
+        </div>
+        <div class="project-info"><span class="tag">COVER CONCEPT</span><h3>Front & Back Cover Direction</h3><p>A sample book-cover presentation showing a consistent design direction across a book project.</p></div>
+      </article>
+
+      <article class="card project" data-category="covers">
+        <div class="cover-stage">
+          <div class="book purple"><div><small>PERSONAL GROWTH</small><b>THE<br>POWER OF<br>CHANGE</b><small style="margin-top:14px">AUTHOR NAME</small></div></div>
+          <div class="book cream"><div><small>A DAILY GUIDE</small><b>LIVE<br>WITH<br>PURPOSE</b><small style="margin-top:14px">AUTHOR NAME</small></div></div>
+        </div>
+        <div class="project-info"><span class="tag">EBOOK & PRINT</span><h3>Self-Help Book Collection</h3><p>A sample visual direction for nonfiction titles, designed for clear typography and shelf appeal.</p></div>
+      </article>
+
+      <article class="card project" data-category="covers">
+        <div class="cover-stage">
+          <div class="book blue"><div><small>BUSINESS GUIDE</small><b>GROW<br>YOUR<br>BUSINESS</b><small style="margin-top:14px">AUTHOR NAME</small></div></div>
+          <div class="book"><div><small>THE HANDBOOK</small><b>SMARTER<br>WORK<br>BETTER<br>RESULTS</b><small style="margin-top:14px">AUTHOR NAME</small></div></div>
+        </div>
+        <div class="project-info"><span class="tag">BUSINESS BOOKS</span><h3>Professional Book Series</h3><p>Coordinated cover concepts for business, educational and professional publishing.</p></div>
+      </article>
+
+      <article class="card project" data-category="interiors">
+        <div class="spread">
+          <div class="open-book"><div><h4>Workbook</h4><p>A clean, structured page layout for exercises, notes and guided activities.</p><div class="lines"></div><div class="lines"></div><div class="lines"></div></div><div><h4>Chapter One</h4><p>Readable typography, thoughtful margins and consistent headings support a better reading experience.</p><div class="lines"></div><div class="lines"></div><div class="lines"></div></div></div>
+        </div>
+        <div class="project-info"><span class="tag">INTERIOR LAYOUT</span><h3>Workbook & Guided Journal</h3><p>A sample spread demonstrating hierarchy, writing space and clean editorial formatting.</p></div>
+      </article>
+
+      <article class="card project" data-category="interiors">
+        <div class="spread">
+          <div class="open-book"><div><h4>Quick Guide</h4><p>Useful information organized into clear sections with space for visual elements.</p><div class="lines"></div><div class="lines"></div><div class="lines"></div></div><div><h4>Key Takeaways</h4><p>Consistent page styling helps readers scan information and follow the material.</p><div class="lines"></div><div class="lines"></div><div class="lines"></div></div></div>
+        </div>
+        <div class="project-info"><span class="tag">PDF & LEAD MAGNET</span><h3>Business Guide & Lead Magnet</h3><p>A sample digital document layout for resources, guides and downloadable content.</p></div>
+      </article>
+
+      <article class="card project" data-category="interiors">
+        <div class="spread">
+          <div class="open-book"><div><h4>Recipe Notes</h4><p>Ingredients, preparation steps and useful notes arranged for easy reading.</p><div class="lines"></div><div class="lines"></div><div class="lines"></div></div><div><h4>From the Kitchen</h4><p>A sample cookbook interior style with a simple editorial grid and generous spacing.</p><div class="lines"></div><div class="lines"></div><div class="lines"></div></div></div>
+        </div>
+        <div class="project-info"><span class="tag">SPECIALTY BOOK</span><h3>Cookbook Interior Concept</h3><p>A sample editorial direction for cookbooks, recipes and specialized publications.</p></div>
+      </article>
+
+      <article class="card project" data-category="web">
+        <div class="web-preview"><div class="web-window"><div class="browser-bar"><i></i><i></i><i></i></div><div class="web-screen"><div class="fake-nav"><b>YOUR BRAND</b><span>Home &nbsp; Work &nbsp; Contact</span></div><h4>Build a brand<br>that stands out.</h4><p>A clean digital experience for your next idea.</p><span class="fake-cta">Explore More ↗</span><div class="fake-blocks"><i></i><i></i><i></i></div></div></div></div>
+        <div class="project-info"><span class="tag">WEB CONCEPT</span><h3>Creative Business Website</h3><p>A visual concept for a modern business homepage. Replace with a completed website project when available.</p></div>
+      </article>
+
+      <article class="card project" data-category="web">
+        <div class="web-preview"><div class="web-window"><div class="browser-bar"><i></i><i></i><i></i></div><div class="web-screen"><div class="fake-nav"><b>STUDIO.</b><span>Services &nbsp; About</span></div><h4>Simple design.<br><span style="color:#c5ff38">Strong impact.</span></h4><p>Present your services with clarity and confidence.</p><span class="fake-cta">Start a Project</span><div class="fake-blocks"><i></i><i></i><i></i></div></div></div></div>
+        <div class="project-info"><span class="tag">LANDING PAGE</span><h3>Landing Page Concept</h3><p>A sample landing page layout with clear messaging and a focused call to action.</p></div>
+      </article>
+
+      <article class="card project" data-category="covers">
+        <div class="cover-stage">
+          <div class="book cream"><div><small>CHILDREN'S BOOK</small><b>MY BIG<br>WORLD OF<br>WONDER</b><small style="margin-top:14px">A STORYBOOK</small></div></div>
+          <div class="book second"><div><small>LEARN & PLAY</small><b>FUN<br>ACTIVITY<br>BOOK</b><small style="margin-top:14px">FOR KIDS</small></div></div>
+        </div>
+        <div class="project-info"><span class="tag">CHILDREN'S BOOKS</span><h3>Children's & Activity Books</h3><p>A sample cover direction for colorful educational and children's publishing projects.</p></div>
+      </article>
+    </div>
+    <p class="portfolio-note">Portfolio note: cover and web visuals above are original CSS-generated sample concepts, not completed client projects. Replace or supplement them with your actual work before presenting them as client deliverables.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="monogram"><span>BY.</span></div>
+    <div class="about-copy">
+      <div class="eyebrow">About the studio</div>
+      <h2>Creative thinking.<br><span class="lime">Professional delivery.</span></h2>
+      <p>Welcome to Binyameen Digital Studio — a creative space focused on book design, publishing layouts and digital experiences.</p>
+      <p>My established work includes book design and KDP formatting, alongside ongoing learning and development in responsive websites and landing pages. The goal is to combine visual quality with clear communication and practical results.</p>
+      <div class="about-points">
+        <div class="about-point"><span>✳</span> Detail-focused work</div>
+        <div class="about-point"><span>✳</span> Clear communication</div>
+        <div class="about-point"><span>✳</span> Thoughtful layouts</div>
+        <div class="about-point"><span>✳</span> Client-focused process</div>
+      </div>
+      <a class="btn btn-primary" style="margin-top:24px" href="#contact">Let's Work Together ↗</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">The process</div>
+      <h2>Clear steps.<br><span class="lime">Better collaboration.</span></h2>
+      <p>A straightforward workflow keeps projects organized from the first discussion to delivery.</p>
+    </div>
+    <div class="process-grid">
+      <article class="process-card"><b>01</b><h3>Discover</h3><p>Discuss goals, requirements, audience and timeline.</p></article>
+      <article class="process-card"><b>02</b><h3>Plan</h3><p>Agree on the scope, layout and creative direction.</p></article>
+      <article class="process-card"><b>03</b><h3>Create</h3><p>Develop the agreed design and communicate progress.</p></article>
+      <article class="process-card"><b>04</b><h3>Deliver</h3><p>Review the agreed work and prepare the final files.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Website feedback</div>
+      <h2>Your experience.<br><span class="lime">Your honest feedback.</span></h2>
+      <p>Visited the portfolio or worked with the studio? Share honest feedback about the website, communication, or creative experience. Every response is welcome.</p>
+    </div>
+    <div class="approved-feedback" id="approvedFeedback" aria-live="polite"></div>
+    <div class="feedback-panel">
+      <h3 style="font-size:23px;margin-bottom:6px">Share your feedback</h3>
+      <p class="feedback-intro">Choose a star rating and tell us what worked well or what could be improved. Please share your own genuine experience—there is no right or wrong rating.</p>
+      <form class="feedback-form" id="feedbackForm">
+        <div class="hp-field" aria-hidden="true"><label>Leave this field empty<input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+        <label>Your name (optional)
+          <input type="text" name="visitor-name" autocomplete="name" placeholder="How should we address you?">
+        </label>
+        <label>Email (optional)
+          <input type="email" name="visitor-email" autocomplete="email" placeholder="you@example.com">
+        </label>
+        <fieldset class="rating-fieldset">
+          <legend>Your rating <span style="color:#ffd166">*</span></legend>
+          <div class="star-options" role="radiogroup" aria-label="Choose a rating from one to five stars">
+            <label class="star-option"><input type="radio" name="rating" value="1 star" required><span aria-hidden="true">★</span> 1</label>
+            <label class="star-option"><input type="radio" name="rating" value="2 stars" required><span aria-hidden="true">★★</span> 2</label>
+            <label class="star-option"><input type="radio" name="rating" value="3 stars" required><span aria-hidden="true">★★★</span> 3</label>
+            <label class="star-option"><input type="radio" name="rating" value="4 stars" required><span aria-hidden="true">★★★★</span> 4</label>
+            <label class="star-option"><input type="radio" name="rating" value="5 stars" required><span aria-hidden="true">★★★★★</span> 5</label>
+          </div>
+        </fieldset>
+        <label>Tell us about your experience <span style="color:#ffd166">*</span>
+          <textarea name="feedback-message" required minlength="8" placeholder="What did you think of the website, portfolio, communication, or design? Suggestions for improvement are welcome."></textarea>
+        </label>
+        <label>May we quote your feedback on this website?
+          <select name="quote-permission">
+            <option value="No, keep my feedback private" selected>No — keep my feedback private</option>
+            <option value="Yes, with my first name only">Yes, with my first name only</option>
+            <option value="Yes, anonymously">Yes, anonymously</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" type="submit">Submit feedback ↗</button>
+        <p class="feedback-privacy">Your feedback is sent privately to the site owner for review; it is not automatically published on this page. Please do not include passwords, payment details, or other sensitive information.</p>
+      </form>
+      <div class="feedback-success-note" id="feedbackSuccess" hidden role="status">Thank you. Your feedback has been sent privately for review.</div>
+      <p id="feedbackStatus" class="feedback-status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="contact-copy">
+        <div class="eyebrow">Let's talk</div>
+        <h2>Have an idea?<br><span class="lime">Let's build it.</span></h2>
+        <p>Tell me about your book, website or creative project. Choose Fiverr, message me on WhatsApp, or send a project inquiry by email.</p>
+        <div class="profile-links">
+          <a class="btn btn-primary" href="https://www.fiverr.com/muhanmadyameen0" target="_blank" rel="noopener noreferrer">Fiverr Profile ↗</a>
+          <a class="btn btn-outline" href="https://wa.me/923052648919" target="_blank" rel="noopener noreferrer">WhatsApp Me ↗</a>
+        </div>
+      </div>
+      <form id="contactForm">
+        <label>Your name<input name="name" required placeholder="Enter your name"></label>
+        <label>Your email<input name="email" type="email" required placeholder="you@example.com"></label>
+        <label>Project details<textarea name="message" required placeholder="Tell me what you need..."></textarea></label>
+        <button class="btn btn-primary" type="submit">Prepare Email ↗</button>
+        <p class="form-hint" id="formHint">This form opens a pre-filled email draft in your email app. It does not store messages on this website.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a class="logo" href="#home">binyameen<span>.</span></a>
+    <p>Design. Build. Grow. · © <span id="year"></span> Binyameen Digital Studio</p>
+    <a class="small-link" href="https://wa.me/923052648919" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+  </div>
+</footer>
+
+<script>
+/* Add your real email address before launch. */
+const CONTACT_EMAIL = "binyameendigital@gmail.com";
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Mobile navigation */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.textContent = open ? "✕" : "☰";
+});
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  });
+});
+
+/* Portfolio filters */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projects = document.querySelectorAll(".project");
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    const filter = button.dataset.filter;
+    projects.forEach(project => {
+      project.hidden = filter !== "all" && project.dataset.category !== filter;
+    });
+  });
+});
+
+/* Private feedback API: submissions stay private until manually approved in /admin.html. */
+const feedbackForm = document.getElementById("feedbackForm");
+const feedbackSuccess = document.getElementById("feedbackSuccess");
+const feedbackStatus = document.getElementById("feedbackStatus");
+const approvedFeedback = document.getElementById("approvedFeedback");
+function escapeHTML(value){return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function loadApprovedFeedback(){
+  try {
+    const response = await fetch("/.netlify/functions/feedback");
+    if(!response.ok) return;
+    const data = await response.json();
+    approvedFeedback.innerHTML = (data.feedback || []).map(item => {
+      const stars = "★".repeat(Math.max(1,Math.min(5,Number(item.rating)||5)));
+      const name = item.displayName || "Visitor";
+      return `<article class="approved-review"><div class="review-stars" aria-label="${Number(item.rating)||5} out of 5 stars">${stars}</div><p>${escapeHTML(item.message)}</p><small>— ${escapeHTML(name)}</small></article>`;
+    }).join("");
+  } catch(e) { /* Approved feedback is optional if the API is temporarily unavailable. */ }
+}
+loadApprovedFeedback();
+feedbackForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  feedbackStatus.textContent = "Sending your feedback securely…";
+  feedbackStatus.classList.remove("error");
+  const data = new FormData(feedbackForm);
+  const payload = {
+    name: data.get("visitor-name"), email: data.get("visitor-email"),
+    rating: Number(String(data.get("rating")||"").match(/\d+/)?.[0] || 0),
+    message: data.get("feedback-message"), permission: data.get("quote-permission"),
+    website: data.get("website") || ""
+  };
+  try {
+    const response = await fetch("/.netlify/functions/feedback", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const result = await response.json();
+    if(!response.ok) throw new Error(result.error || "Could not send feedback. Please try again.");
+    feedbackForm.reset(); feedbackSuccess.hidden = false;
+    feedbackStatus.textContent = "Thanks — your feedback is private and is waiting for the site owner’s review. It will not appear publicly unless approved and you allowed it to be quoted.";
+  } catch(error) { feedbackStatus.textContent = error.message || "Network error. Please try again."; feedbackStatus.classList.add("error"); }
+});
+
+/* Contact form prepares an email draft. It does not store submissions. */
+document.getElementById("contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const hint = document.getElementById("formHint");
+
+  if (!CONTACT_EMAIL.trim()) {
+    hint.textContent = "Setup required: add your email address to CONTACT_EMAIL in the script before using this form.";
+    return;
+  }
+
+  const data = new FormData(event.target);
+  const subject = encodeURIComponent("New project inquiry from " + data.get("name"));
+  const body = encodeURIComponent(
+    "Name: " + data.get("name") + "\n" +
+    "Email: " + data.get("email") + "\n\n" +
+    "Project details:\n" + data.get("message")
+  );
+  window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + subject + "&body=" + body;
+});
+</script>
+</body>
+</html>
